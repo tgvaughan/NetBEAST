@@ -17,13 +17,14 @@
 
 package netbeast;
 
+import beast.evolution.likelihood.TreeLikelihood;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxEdgeStyle;
 import com.mxgraph.view.mxGraph;
-import netbeast.utils.ExtendedAddOnManager;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -64,6 +65,8 @@ public class NetBeast extends JFrame {
 
         Container cp = getContentPane();
 
+        // Set up graph pane
+
         mxGraph graph = new mxGraph();
         Object parent = graph.getDefaultParent();
         graph.setAllowDanglingEdges(false);
@@ -89,16 +92,31 @@ public class NetBeast extends JFrame {
         }
 
         mxGraphComponent graphComponent = new mxGraphComponent(graph);
-        cp.add(graphComponent);
+//        cp.add(graphComponent);
+
+        // Set up block pane
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Test");
+        DefaultMutableTreeNode child1 = new DefaultMutableTreeNode("child1");
+        root.add(child1);
+        DefaultMutableTreeNode child2 = new DefaultMutableTreeNode("child2");
+        root.add(child2);
+        JTree tree = new JTree(root);
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, graphComponent, tree);
+        cp.add(splitPane);
+
+        pack();
     }
 
     public static void main(String[] args) throws IOException {
-        SwingUtilities.invokeLater(() -> new NetBeast().setVisible(true));
+//        SwingUtilities.invokeLater(() -> new NetBeast().setVisible(true));
 
 //        AddOnManager.loadExternalJars();
 //        java.util.List<String> classes = AddOnManager.find("beast.core.BEASTObject", "bacter");
 //        System.out.println(classes);
 
-        System.out.println(ExtendedAddOnManager.getInstalledPackageNames());
+//        System.out.println(ExtendedAddOnManager.getInstalledPackageNames());
+
+        new BaseBlockType(TreeLikelihood.class);
     }
 }
