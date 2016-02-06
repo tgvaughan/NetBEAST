@@ -101,8 +101,12 @@ public class NetBeast extends JFrame {
         DefaultMutableTreeNode child2 = new DefaultMutableTreeNode("child2");
         root.add(child2);
         JTree tree = new JTree(root);
+        JScrollPane scrollPane = new JScrollPane(tree,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, graphComponent, tree);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+                graphComponent, scrollPane);
         cp.add(splitPane);
 
         pack();

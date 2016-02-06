@@ -52,10 +52,12 @@ public class BaseBlockType extends BlockType {
         // Populate inputs
         try {
             for (Input input : instance.listInputs()) {
-
-
-
-//                System.out.println(input.getName() + " " + input.getClass().getTypeParameters()
+                try {
+                    input.determineClass(instance);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println(input.getName() + " " + input.getType().getCanonicalName());
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
