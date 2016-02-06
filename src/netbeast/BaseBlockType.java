@@ -55,7 +55,7 @@ public class BaseBlockType extends BlockType {
 
 
 
-                System.out.println(input.getName() + " " + input.getClass().getTypeParameters()
+//                System.out.println(input.getName() + " " + input.getClass().getTypeParameters()
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

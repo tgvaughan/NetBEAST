@@ -1,4 +1,4 @@
-<addon name="NetBeast" version="1.0.0">
+<addon name="NetBEAST" version="1.0.0">
     <depends on="beast2" atleast="2.3.2"/>
 
     <!-- Add other dependencies as necessary. -->
